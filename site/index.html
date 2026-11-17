@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dusk Patrol — a pixel-art jet flying toy for your browser</title>
+<meta name="description" content="Fly a pixel-art fighter over autumn lake country at the last light of day. A whole world generated in your browser, ray-marched in raw WebGL2, shipped as one small HTML file.">
+<meta name="theme-color" content="#1c1626">
+<link rel="icon" href="media/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dusk Patrol">
+<meta property="og:title" content="Dusk Patrol — fly at the last light of day">
+<meta property="og:description" content="A pixel-art jet flying toy. A 20 km lake country generated in your browser, ray-marched in raw WebGL2, shipped as one HTML file.">
+<meta property="og:url" content="https://nearbycoder.github.io/dusk-patrol/">
+<meta property="og:image" content="https://nearbycoder.github.io/dusk-patrol/media/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A grey twin-tail jet banking over autumn lakes and peach cumulus toward a low sun, in pixel art.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top" aria-label="Dusk Patrol home"><span class="brand-mark" aria-hidden="true"></span><span>Dusk Patrol</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#world">World</a>
+      <a href="#how">How it works</a>
+      <a href="#manual">Controls</a>
+      <a href="https://github.com/nearbycoder/dusk-patrol">Source</a>
+    </nav>
+    <a class="btn btn-small" href="play/">Fly now</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-media" aria-hidden="true">
+      <img class="hero-poster px" src="media/poster.webp" width="640" height="360" alt="">
+      <iframe class="hero-live" title="Dusk Patrol flying on autopilot" tabindex="-1"></iframe>
+    </div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-copy">
+      <p class="eyebrow">A browser flying toy</p>
+      <h1 class="logo" id="hero-title">Dusk Patrol</h1>
+      <p class="lede">Take a pixel-art fighter over autumn lake country at the last light of day.</p>
+      <p class="hero-sub">A whole world generated in your browser, ray-marched in raw WebGL2, and shipped as one small HTML file. No engine, no images, no install.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="play/"><span class="tri" aria-hidden="true"></span>Fly now</a>
+        <a class="btn btn-ghost" href="#play">Play right here</a>
+      </div>
+      <ul class="spec-row" aria-label="At a glance">
+        <li><b>1</b> HTML file</li>
+        <li><b>0</b> dependencies</li>
+        <li><b>20&nbsp;km</b> of world</li>
+        <li><b>3</b> cameras</li>
+      </ul>
+    </div>
+    <p class="hero-note"><span class="live-dot" aria-hidden="true"></span><span class="live-text"><span class="lt-wide">Behind this text: </span><span class="lt-narrow">Live: </span>the actual game, flying itself.</span></p>
+    <div class="dither-edge to-night" aria-hidden="true"></div>
+  </section>
+
+  <section class="section" id="fly" aria-labelledby="fly-title">
+    <div class="wrap">
+      <p class="eyebrow">Three ways to fly</p>
+      <h2 id="fly-title">Chase it. Fly it. Map it.</h2>
+      <p class="section-lede">Space swaps between three cameras with a one-second swoop. The jet never leaves the frame.</p>
+      <div class="cards">
+        <figure class="card">
+          <button class="shot" data-full="media/shot-chase.webp" data-caption="Chase: banking over the cumulus toward a low sun."><img class="px" src="media/shot-chase.webp" width="640" height="360" alt="Chase view: the jet banks over pink cumulus toward the sun" loading="lazy"></button>
+          <figcaption><h3>Chase</h3><p>Sit behind the jet as it banks through the cloud tops. Hold the mouse for afterburner. Click for a barrel roll that corkscrews your vapour trails.</p></figcaption>
+        </figure>
+        <figure class="card">
+          <button class="shot" data-full="media/shot-cockpit.webp" data-caption="Cockpit: a conformal HUD and a panel where every needle is live."><img class="px" src="media/shot-cockpit.webp" width="640" height="360" alt="Cockpit view with a green HUD, the sun, and an instrument panel" loading="lazy"></button>
+          <figcaption><h3>Cockpit</h3><p>A hand-plotted panel where every needle reads the sim. A HUD whose pitch ladder sits exactly on the real horizon.</p></figcaption>
+        </figure>
+        <figure class="card">
+          <button class="shot" data-full="media/shot-top.webp" data-caption="Top-down: north up, the jet flies toward your cursor."><img class="px" src="media/shot-top.webp" width="640" height="360" alt="Top-down view over lakes, autumn forest and cloud" loading="lazy"></button>
+          <figcaption><h3>Top-down</h3><p>North up, like a map. The jet flies toward your cursor across lakes, forest and long violet shadows.</p></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="world" aria-labelledby="world-title">
+    <div class="dither-edge to-alt top" aria-hidden="true"></div>
+    <div class="wrap split">
+      <div class="split-copy">
+        <p class="eyebrow">Generated on load</p>
+        <h2 id="world-title">A whole world, grown in your browser</h2>
+        <p>Before the title card appears, your machine's cores build a seamlessly tiling patch of lake country, 20.48&nbsp;km on a side. It has lakes with pale turquoise shallows and navy depths, sandy beaches, meadows, forests in orange, crimson and gold with dark conifers, grey-violet rock, and snow on the highest peaks.</p>
+        <p>Shadows for the low western sun are baked into the terrain, so every hill throws a long violet shadow. A second worker grows a field of cauliflower cumulus that drifts east while you fly.</p>
+        <dl class="stats">
+          <div><dt>Height samples</dt><dd>4.2&nbsp;M</dd></div>
+          <div><dt>Grid spacing</dt><dd>10&nbsp;m</dd></div>
+          <div><dt>Cloud clusters</dt><dd>250</dd></div>
+          <div><dt>Generated in</dt><dd>&lt;&nbsp;1&nbsp;s</dd></div>
+        </dl>
+      </div>
+      <figure class="map-frame">
+        <button class="shot" data-full="media/map.webp" data-caption="The whole world: one 20.48 km tile, rendered from the generator in the game's own palette. It repeats seamlessly in every direction."><img class="px" src="media/map.webp" width="1024" height="1024" alt="Pixel-art map of the whole generated world: lakes, forests, mountains and snow" loading="lazy"></button>
+        <figcaption>The entire tile, top-down. Fly off any edge and you're back on the other side, seamlessly.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="gallery" aria-labelledby="gallery-title">
+    <div class="wrap">
+      <p class="eyebrow">Postcards from the patrol</p>
+      <h2 id="gallery-title">Golden hour, every hour</h2>
+      <div class="gallery">
+        <button class="shot g-big" data-full="media/shot-skim.webp" data-caption="Skimming a lake at ten metres into the glitter path."><img class="px" src="media/shot-skim.webp" width="640" height="360" alt="The jet skims a lake toward the sun, with glints on the water" loading="lazy"></button>
+        <button class="shot" data-full="media/shot-strike-top.webp" data-caption="A missile strike over crimson forest: fireball, smoke and an expanding shock ring."><img class="px" src="media/shot-strike-top.webp" width="640" height="360" alt="Top-down view of a fireball and shock ring over red forest" loading="lazy"></button>
+        <button class="shot" data-full="media/shot-strike-lake.webp" data-caption="On water, missiles throw up a column of spray and rings of foam."><img class="px" src="media/shot-strike-lake.webp" width="640" height="360" alt="A spray column and foam rings rise from a lake behind the jet" loading="lazy"></button>
+        <button class="shot" data-full="media/shot-peaks.webp" data-caption="Snow on the highest peaks, lit peach by the setting sun."><img class="px" src="media/shot-peaks.webp" width="640" height="360" alt="The jet over snowy peaks with peach-lit clouds" loading="lazy"></button>
+        <button class="shot" data-full="media/shot-canopy.webp" data-caption="Low over the canopy: every crown is drawn in the shader, with dark conifers mixed in."><img class="px" src="media/shot-canopy.webp" width="640" height="360" alt="Top-down view of golden autumn tree crowns" loading="lazy"></button>
+        <button class="shot" data-full="media/shot-roll.webp" data-caption="Afterburner and a barrel roll over the lakes."><img class="px" src="media/shot-roll.webp" width="640" height="360" alt="The jet rolls with its afterburners lit" loading="lazy"></button>
+        <button class="shot g-big g-right" data-full="media/shot-strike-land.webp" data-caption="A land strike: flash, fireball, shock ring, and a smoke column that lingers."><img class="px" src="media/shot-strike-land.webp" width="640" height="360" alt="The jet flies toward an explosion with a shock ring over a forested hill" loading="lazy"></button>
+        <button class="shot" data-full="media/shot-cloudtops.webp" data-caption="Skimming the cloud tops toward the sun."><img class="px" src="media/shot-cloudtops.webp" width="640" height="360" alt="The jet flies just above the cumulus toward a low sun" loading="lazy"></button>
+        <button class="shot" data-full="media/shot-valley.webp" data-caption="Banking down a mountain valley in the last light."><img class="px" src="media/shot-valley.webp" width="640" height="360" alt="The jet banks through a valley between snowy peaks" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="features" aria-labelledby="features-title">
+    <div class="dither-edge to-alt top" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">No assets, no engine</p>
+      <h2 id="features-title">Everything on screen is drawn by code</h2>
+      <ul class="features">
+        <li><i class="icon" data-icon="world" aria-hidden="true"></i><h3>Procedural lake country</h3><p>Domain-warped noise with erosion-style hills, ridged ranges and long shallow shelves, generated by web workers while a progress bar fills.</p></li>
+        <li><i class="icon" data-icon="ray" aria-hidden="true"></i><h3>Ray-marched, any angle</h3><p>Every pixel marches the height field on the GPU, so the camera can look anywhere, from cockpit to map view.</p></li>
+        <li><i class="icon" data-icon="cloud" aria-hidden="true"></i><h3>Puffy cumulus</h3><p>A cloud layer below cruise altitude, shaded in stepped peach-to-violet tones, with silver linings toward the sun and shadows on the land.</p></li>
+        <li><i class="icon" data-icon="gauge" aria-hidden="true"></i><h3>A cockpit that reads true</h3><p>Airspeed, attitude, altimeter, turn &amp; slip, heading, climb rate, an amber ground-mapping radar, engine tapes, and a clock on your local time.</p></li>
+        <li><i class="icon" data-icon="boom" aria-hidden="true"></i><h3>Missiles with aftermath</h3><p>Four on the wings, re-arming in seconds. A flash, a fireball and a shock ring, then scorch marks with embers on land or spray columns on water.</p></li>
+        <li><i class="icon" data-icon="up" aria-hidden="true"></i><h3>Can't crash</h3><p>Arcade flight that pulls up on its own before terrain. It skims water at ten metres, throwing spray and a wake.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <p class="eyebrow">Under the hood</p>
+      <h2 id="how-title">How it works</h2>
+      <p class="section-lede">One <code>index.html</code>: raw WebGL2 for the world, Canvas&nbsp;2D for the cockpit, Web&nbsp;Audio for sound. Here's the path from a blank page to a jet at sunset.</p>
+
+      <ol class="steps">
+        <li class="step">
+          <div class="step-copy">
+            <span class="step-n">01</span>
+            <h3>Generate</h3>
+            <p>Web workers split the 2048&times;2048 height field into strips and fill it with tiling noise. A final pass grows forest patches, adds canopy height, sweeps shadows across the tile for a sun 8.5° above the horizon, blurs in ambient occlusion, and builds a <em>max-mip</em> pyramid: each level stores the highest point in its cell.</p>
+          </div>
+          <div class="step-visual mini-stats" aria-hidden="true">
+            <div><b>2048²</b><span>height field</span></div>
+            <div><b>12</b><span>mip levels</span></div>
+            <div><b>1024²</b><span>cloud field</span></div>
+            <div><b>8</b><span>workers</span></div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-copy">
+            <span class="step-n">02</span>
+            <h3>Trace</h3>
+            <p>A fragment shader casts one ray per pixel. It strides over empty air a whole mip cell at a time, drops a level whenever the ray might touch terrain, and solves the exact bilinear patch where it lands. Clouds are a second, <em>signed</em> height field traced the same way, so their outlines stay smooth.</p>
+            <p class="note">The heatmap shows the work per pixel: amber for terrain, teal for clouds. Open sky is nearly free.</p>
+          </div>
+          <figure class="step-visual"><button class="shot" data-full="media/heat.webp" data-caption="Ray-march cost per pixel: amber is terrain traversal, teal is clouds."><img class="px" src="media/heat.webp" width="640" height="360" alt="Iteration heatmap: glowing teal cloud edges over amber terrain" loading="lazy"></button></figure>
+        </li>
+        <li class="step">
+          <div class="step-copy">
+            <span class="step-n">03</span>
+            <h3>Shade and dither</h3>
+            <p>Every colour comes from a hand-picked ramp: water from navy to pale turquoise, clouds from violet to peach, forests in orange, crimson and gold. Light picks a tone, and a 4&times;4 Bayer matrix dithers only a narrow strip at each tone boundary, so bands stay flat and edges stay crunchy. The image renders at about 340&nbsp;px tall and scales up by whole pixels.</p>
+            <p class="note">Drag the slider to see how dither width changes a sky gradient.</p>
+          </div>
+          <div class="step-visual dither-lab">
+            <canvas id="dither-demo" class="px" width="192" height="40" aria-label="A sky gradient quantized to eight tones with ordered dithering"></canvas>
+            <label class="slider"><span>Dither width</span><input id="dither-width" type="range" min="0" max="100" value="50"><output id="dither-out">0.50</output></label>
+            <div class="ramps" id="ramps" aria-label="Some of the game's palette ramps"></div>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-copy">
+            <span class="step-n">04</span>
+            <h3>The jet</h3>
+            <p>About three hundred triangles built from code: a pointed dark radome, gold-tinted bubble canopy, cropped delta wings, canted twin fins with red caps, and glowing nozzles. Every face gets one of three tones, a splinter camouflage of grey and slate, then a one-pixel dark outline in the final pass. A small orthographic mask throws its shadow onto land, water and cloud.</p>
+          </div>
+          <figure class="step-visual sprite"><button class="shot" data-full="media/jet.webp" data-caption="The jet up close: three tones per face and a one-pixel outline."><img class="px" src="media/jet.webp" width="170" height="96" alt="Close-up of the pixel-art jet from behind" loading="lazy"></button></figure>
+        </li>
+        <li class="step">
+          <div class="step-copy">
+            <span class="step-n">05</span>
+            <h3>Cockpit and HUD</h3>
+            <p>Instruments are plotted pixel by pixel on a Canvas&nbsp;2D surface with a 3&times;5 font: airspeed, attitude ball, altimeter with drum digits, turn &amp; slip, heading card, climb rate, an amber radar with sweep persistence, engine tapes, warning lamps and a throttle that follows the afterburner. The HUD projects its pitch ladder through the same camera as the world, so 0° sits exactly on the horizon.</p>
+          </div>
+          <figure class="step-visual"><button class="shot" data-full="media/panel.webp" data-caption="The instrument panel: every reading comes from the flight model."><img class="px" src="media/panel.webp" width="440" height="122" alt="The pixel-art instrument panel with dials, radar and lamps" loading="lazy"></button></figure>
+        </li>
+        <li class="step">
+          <div class="step-copy">
+            <span class="step-n">06</span>
+            <h3>Feel</h3>
+            <p>The flight model is arcade, but G-limited, so the meter reads like a fighter's. Predictive terrain avoidance looks five seconds down your path and pulls up just early enough, which means you can dive at a lake and level off into a spray-throwing skim. If frames run slow, the internal resolution steps down a notch, always by whole pixels.</p>
+          </div>
+          <div class="step-visual mini-stats" aria-hidden="true">
+            <div><b>+11&nbsp;g</b><span>pull limit</span></div>
+            <div><b>10&nbsp;m</b><span>skim height</span></div>
+            <div><b>5&nbsp;s</b><span>look-ahead</span></div>
+            <div><b>6</b><span>res steps</span></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section alt" id="manual" aria-labelledby="manual-title">
+    <div class="dither-edge to-alt top" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">Flight manual</p>
+      <h2 id="manual-title">Controls</h2>
+      <div class="placards">
+        <div class="placard">
+          <h3>Mouse and keyboard</h3>
+          <dl>
+            <div><dt>Mouse</dt><dd>Steer. In top-down the jet flies toward the cursor. In chase and cockpit, the cursor's offset from centre sets turn and climb.</dd></div>
+            <div><dt>Click</dt><dd>Barrel roll</dd></div>
+            <div><dt>Hold</dt><dd>Afterburner</dd></div>
+            <div><dt>Right click / F</dt><dd>Missile. Four on the rails, each re-arms after a few seconds.</dd></div>
+            <div><dt>Space</dt><dd>Cycle views: top-down, chase, cockpit</dd></div>
+            <div><dt>M</dt><dd>Sound on or off. It's synthesised live, and off by default.</dd></div>
+          </dl>
+        </div>
+        <div class="placard">
+          <h3>Touch</h3>
+          <dl>
+            <div><dt>Drag</dt><dd>Steer from anywhere on screen</dd></div>
+            <div><dt>Fire</dt><dd>Launch a missile</dd></div>
+            <div><dt>Boost</dt><dd>Hold for afterburner</dd></div>
+            <div><dt>Roll</dt><dd>Barrel roll</dd></div>
+            <div><dt>View</dt><dd>Cycle the three cameras</dd></div>
+          </dl>
+          <p class="placard-note">Until you take the stick, the jet flies lazy S-turns on its own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="play" aria-labelledby="play-title">
+    <div class="wrap">
+      <p class="eyebrow">No install</p>
+      <h2 id="play-title">Play it right here</h2>
+      <p class="section-lede">It runs in this page. Click inside the screen to give it the keyboard, then press Space for the cockpit.</p>
+      <div class="cabinet" id="cabinet">
+        <img class="px cabinet-poster" src="media/shot-skim.webp" width="640" height="360" alt="" loading="lazy">
+        <button class="cabinet-start" type="button"><span class="tri" aria-hidden="true"></span><span>Take off</span></button>
+      </div>
+      <div class="cabinet-bar">
+        <span class="hint">Works best with a mouse. Touch works too. Needs WebGL2.</span>
+        <span class="cabinet-actions">
+          <button class="btn btn-small btn-ghost" type="button" id="cab-full" disabled>Full screen</button>
+          <a class="btn btn-small" href="play/">Open in its own tab</a>
+        </span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="dither-edge to-foot top" aria-hidden="true"></div>
+  <div class="wrap footer-row">
+    <div>
+      <p class="footer-logo">Dusk Patrol</p>
+      <p class="footer-text">Made by <a href="https://github.com/nearbycoder">nearbycoder</a>. Raw WebGL2, Canvas&nbsp;2D and Web&nbsp;Audio. Fonts: Silkscreen &amp; IBM Plex.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="play/">Play</a>
+      <a href="https://github.com/nearbycoder/dusk-patrol">Source on GitHub</a>
+      <a href="#top">Back to top</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <figure>
+    <img class="px" alt="">
+    <figcaption></figcaption>
+  </figure>
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
+</div>
+
+<script src="site.js" defer></script>
+</body>
+</html>
