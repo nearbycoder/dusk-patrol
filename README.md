@@ -18,10 +18,28 @@ The whole game is one self-contained file, [`index.html`](index.html), about 170
 | Right click or `F` | Fire a missile. Four sit on the wings, and each re-arms after a few seconds |
 | `Space` | Cycle views: top-down (north up), chase, cockpit |
 | `M` or the sound button | Toggle synthesised sound (off by default) |
+| `P` | Pause |
 | Touch | Drag to steer; on-screen FIRE, BOOST (hold), ROLL and VIEW buttons |
 
 Extras: `Shift` for afterburner, `R` to roll, mouse wheel for altitude in the top view.
-The jet flies lazy S-turns until you first move the mouse. It can't crash: it pulls up on its own before terrain and skims water at about 10 m.
+The jet flies lazy S-turns until you first take the controls. It can't crash: it pulls up on its own before terrain and skims water at about 10 m.
+
+### Controller
+
+Any controller the browser exposes through the Gamepad API's standard layout works, including Xbox, PlayStation, Switch Pro and 8BitDo pads. Press any button to wake it.
+
+| Input | Action |
+| --- | --- |
+| Left stick | Fly. In chase and cockpit it sets bank and climb. In the top view, point where you want to go |
+| RT | Afterburner |
+| A or LT | Fire a missile |
+| B | Barrel roll; LB / RB roll left / right |
+| Y | Cycle views |
+| Start | Pause (the game also pauses if the controller disconnects) |
+| Back | Swap pitch style: pull back to climb (default) or push up to climb. Remembered between visits |
+| D-pad up/down or right stick | Altitude in the top view |
+
+Controllers with haptics rumble on launches, nearby explosions, barrel rolls and low-level skims over water. Moving the mouse or touching the screen switches back to those controls.
 
 ## How it works
 

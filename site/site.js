@@ -129,7 +129,7 @@
       frame = document.createElement('iframe');
       frame.src = 'play/';
       frame.title = 'Dusk Patrol';
-      frame.allow = 'fullscreen; autoplay';
+      frame.allow = 'fullscreen; autoplay; gamepad';
       cab.appendChild(frame);
       cab.classList.add('on');
       cabinetOn = true;
